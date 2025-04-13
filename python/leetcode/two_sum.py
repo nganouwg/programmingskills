@@ -41,6 +41,8 @@ def run(nums, target):
         pass
     '''
 
+    #TODO: Attempt to use hash and subraction to find the number needed to get the target
+
     i = 0
     j = 0
     found = False
