@@ -13,4 +13,4 @@ palindrome_number.run(x)
 strs = ["flower","flow","flight"]
 #strs = ["dog","racecar","car"]
 
-longest_common_prefix.run(strs)
+print(longest_common_prefix.run(strs))
