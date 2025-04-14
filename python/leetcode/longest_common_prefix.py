@@ -64,7 +64,7 @@ def run(strs):
             shortest_word_len = len(word)
 
     i = 0
-    while(i < shortest_word_len):
+    for i in range(shortest_word_len):
         cur_letter = ""
         for word in strs:
             if cur_letter == "":
