@@ -32,54 +32,35 @@ Constraints:
 
     1. Determine the lenght of the shortest_word
 
-    2. Set an index-i ranging from 0 to the size of the shorted_word - 1 to compare characters by positipn
+    2. Set the prefix to an emtpy string
 
-    3. set the cur_letter to an empty string, which is used to hold prefix character at index-i.
+    3. Set and index-i and loop through each character position from ranging 0 to lenght of the shortest_word -1
 
-    4. Loop through each word at the same index
-
-    5. if the cur_letter is empty, this means we are at a new character position, 
-       so set the cur_letter to the first word's character at index-i 
-
-    6. Compare the cur_letter to the same position characters for subsequent words. 
+    4. Assume the character at index-i of the first word is part of the common prefix
     
-    7. If a mismatch is found set end_of_prefix to true, 
-       which mean we no longer found characters for the common prefix and we can break out of the loops
+    5. Loop through each word at the same index, to make sure it is in fact a common prefixed character
 
-    8. If no mismatch is found include the cur_letter to the prefix
+    5. if it's not slice of that character and return the rest
 
-    9. Display the common prefix
+    6. If all character are common part of the common prefix, return the shortest word
 '''
 
 
 def run(strs):
 
-    prefixes = ""
-    end_of_prefix = False
-    cur_letter = ""
+    
     shortest_word_len = len(strs[0])
 
     for word in strs:
         if shortest_word_len > len(word):
             shortest_word_len = len(word)
 
-    i = 0
+    prefix = ""
     for i in range(shortest_word_len):
-        cur_letter = ""
+        prefix += strs[0][i]
         for word in strs:
-            if cur_letter == "":
-                cur_letter = word[i]
-            else:
-                if cur_letter != word[i]:
-                    end_of_prefix = True
-                    break
+            if prefix[i] != word[i]:
+                return prefix[:i]
 
-        if end_of_prefix == False:
-            prefixes = prefixes + cur_letter
-        else:
-            break
-
-        i += 1
-
-    print(prefixes)
+    return prefix
         
