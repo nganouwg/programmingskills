@@ -52,12 +52,11 @@ Constraints:
 '''
 
 
-
 def run(strs):
 
     prefixes = ""
     end_of_prefix = False
-    prev_letter = ""
+    cur_letter = ""
     shortest_word_len = len(strs[0])
 
     for word in strs:
@@ -65,18 +64,18 @@ def run(strs):
             shortest_word_len = len(word)
 
     i = 0
-    for i in range(shortest_word_len):
-        prev_letter = ""
+    while(i < shortest_word_len):
+        cur_letter = ""
         for word in strs:
-            if prev_letter == "":
-                prev_letter = word[i]
+            if cur_letter == "":
+                cur_letter = word[i]
             else:
-                if prev_letter != word[i]:
+                if cur_letter != word[i]:
                     end_of_prefix = True
                     break
 
         if end_of_prefix == False:
-            prefixes = prefixes + prev_letter
+            prefixes = prefixes + cur_letter
         else:
             break
 
