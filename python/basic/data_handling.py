@@ -1,3 +1,12 @@
+'''
+    Here are some improvement or recommended adjustments. 
+
+    1. When converting the score datatype to int, it can trigger a SettingWithCopyWarning, because clean_df may be a view of the original df.
+       So, the copy() method ensures you're working on a copy, not a view — avoiding unexpected bugs in more complex pipelines.
+    2. Use dropna, instead of notna to make the code expressive and concise
+
+'''
+
 import pandas as pd
 
 #pd_list = dir(pd)
@@ -15,7 +24,7 @@ df = pd.DataFrame({
 
 #print(df)
 
-clean_df = df[pd.notna(df['name']) & pd.notna(df['score'])]
+clean_df = df.dropna(subset=["name", "score"]).copy()
 clean_df['score'] = clean_df['score'].astype(int)
 
 print(clean_df)
@@ -30,3 +39,21 @@ data = {
 
 df = pd.json_normalize(data, sep="_")
 print(df)
+
+data2 = [
+    {
+        "user": {
+            "name": "Alice",
+            "profile": {"age": 30, "city": "NY"}
+        }
+    },
+    {
+        "user": {
+            "name": "Bob",
+            "profile": {"age": 25, "city": "LA"}
+        }
+    }
+]
+
+df2 = pd.json_normalize(data2, sep="_")
+print(df2)

@@ -1,4 +1,10 @@
 
+'''
+    Use "is not" instead of != to make it more intuitive
+    subtract from the index instead of adding to the position
+
+    use snake_case_consistently
+'''
 
 #Linked List Traversal
 class Node(object):
@@ -12,7 +18,7 @@ class LinkedList:
         self.head = None
 
 
-    def insertAtBegin(self, data):
+    def insert_at_begin(self, data):
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
@@ -22,18 +28,18 @@ class LinkedList:
             self.head = new_node
 
 
-    def insertAtIndex(self, data, index):
+    def insert_at_index(self, data, index):
         if (index == 0):
-            self.insertAtBegin(data)
+            self.insert_at_begin(data)
             return
         
         position = 0
         current_node = self.head
-        while(current_node != None and position+1 != index):
+        while current_node is not None and position < index -1:
             position = position+1
             current_node = current_node.next
 
-        if current_node != None:
+        if current_node is not None:
             new_node = Node(data)
             new_node.next = current_node.next
             current_node.next = new_node
@@ -41,26 +47,29 @@ class LinkedList:
             print("Indext not found")
 
 
-    def insertAtEnd(self, data):
+    def insert_at_end(self, data):
         new_node = Node(data)
         if self.head is None:
             self.head = new_node
             return
 
         current_node = self.head
-        while(current_node.next):
+        while current_node.next:
             current_node = current_node.next
 
         current_node.next = new_node
 
         
-    def updateNode(self, val, index):
+    def update_node(self, val, index):
         current_node = self.head
         position = 0
+        if current_node is None:
+            raise IndexError("Index out of bounds")
+        
         if position == index:
             current_node.data = val
         else:
-            while(current_node != None and position != index):
+            while(current_node is not None and position < index):
                 position = position+1
                 current_node = current_node.next
 
@@ -120,13 +129,13 @@ class LinkedList:
         else:
             current_node.next = current_node.next.next
 
-    def printLL(self):
+    def print_linked_list(self):
         current_node = self.head
         while(current_node):
             print(current_node.data)
             current_node = current_node.next
 
-    def sizeOfLL(self):
+    def size_of_linked_list(self):
         size = 0
         if(self.head):
             current_node = self.head
@@ -142,35 +151,35 @@ class LinkedList:
 llist = LinkedList()
 
 # add nodes to the linked list
-llist.insertAtEnd('a')
-llist.insertAtEnd('b')
-llist.insertAtBegin('c')
-llist.insertAtEnd('d')
-llist.insertAtIndex('g', 2)
+llist.insert_at_end('a')
+llist.insert_at_end('b')
+llist.insert_at_begin('c')
+llist.insert_at_end('d')
+llist.insert_at_index('g', 2)
 
 # print the linked list
 print("Node Data:")
-llist.printLL()
+llist.print_linked_list()
 
 # remove nodes from the linked list
 print("\nRemove First Node:")
 llist.remove_first_node()
-llist.printLL()
+llist.print_linked_list()
 
 print("\nRemove Last Node:")
 llist.remove_last_node()
-llist.printLL()
+llist.print_linked_list()
 
 print("\nRemove Node at Index 1:")
 llist.remove_at_index(1)
-llist.printLL()
+llist.print_linked_list()
 
 # print the linked list after all removals
 print("\nLinked list after removing a node:")
-llist.printLL()
+llist.print_linked_list()
 
 print("\nUpdate node Value at Index 0:")
-llist.updateNode('z', 0)
-llist.printLL()
+llist.update_node('z', 0)
+llist.print_linked_list()
 
-print("\nSize of linked list:", llist.sizeOfLL())
+print("\nSize of linked list:", llist.size_of_linked_list())

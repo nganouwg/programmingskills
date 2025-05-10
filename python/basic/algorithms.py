@@ -1,46 +1,51 @@
 
+'''
+    Factorial:
+        Make the code more Pythonic, using recursive function to make it more concise, 
+        and add error-checking for negative values
+
+    dectect duplites:
+        Use sets. Compare the number of items in the set and number of items in the list. 
+
+    csv parsing:
+        Introduce a reusable function
+'''
+
 import pandas as pd
 from collections import Counter
 
 def factorial(num):
+    if num < 0:
+        raise ValueError("Factorial is undefined for negative numbers")
+    return 1 if num == 0 else num * factorial(num - 1)
 
-    total = 1
-    for i in range(1, num+1):
-        total *= i
-    print(total)
-
-def detect_duplicate(user_ids):
-
-    counts = Counter(user_ids)
-    dups = [id for id, count in counts.items() if count > 1]
-    print(dups)
+def detect_duplicate(ids):
+    return len(ids) != len(set(ids))
 
 
 def csv_parsing(filepath):
 
     df = pd.read_csv(filepath)
-    print(df)
 
     #return the top 5 rows where a column "score" is above x (e.g 3)
     #SQL: Select top 5 * from games where score > x order by score desc
+    top_n = 5
     score_threshold = 3
-    df_score_threshold = df[df['Home Goals'] > score_threshold]
-    
-    print(df_score_threshold)
+    column_name = 'Home Goals'
 
-    df_score_threshold_desc = df_score_threshold.sort_values(by='Home Goals', ascending=False)
+    def top_scores(df, column="Home Goals", threshold=3, top_n=5):
+        return df[df[column] > threshold].sort_values(by=column, ascending=False).head(top_n)
 
-    print(df_score_threshold_desc)
+    df_top_scores = top_scores(df, column_name, score_threshold, top_n)
+    print(df_top_scores)
 
-    #top 5
-    print(df_score_threshold_desc.head(5))
-    
 
 if __name__ == "__main__":
-    factorial(3)
+    print(factorial(3))
 
     user_ids = [1001, 1002, 1003, 1002]
-    detect_duplicate(user_ids)
+    print(user_ids)
+    print("Has Duplicates : ", detect_duplicate(user_ids))
 
     csv_parsing('/Users/georgesnganou/Documents/Projects/VS_Code/programming/sample_data/kagglehub/archive/world_cup_matches1.csv')
 
