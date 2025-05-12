@@ -7,3 +7,7 @@ You can click the Preview link to take a look at your changes.
 --->
 
 # Getting Started with Python 
+
+Geek for Geeks Exercises:
+
+https://www.geeksforgeeks.org/python-exercises-practice-questions-and-solutions/ 
