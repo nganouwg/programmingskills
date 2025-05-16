@@ -19,18 +19,18 @@ print(df)
 print('\n')
 
 #   Selecting all the rows from the given dataframe in which ‘Percentage’ is greater than 80 using basic method.
-#print(df[df['Percentage'] > 80])
+print(df[df['Percentage'] > 80])
 
 #   Selecting all the rows from the given dataframe in which ‘Percentage’ is greater than 80 using loc.
-#print(df.loc[df['Percentage'] > 80])
+print(df.loc[df['Percentage'] > 80])
 
 #   Selecting all the rows from the given dataframe in which ‘Stream’ is present in the options list using basic method.
-#options = ['Math', 'Commerce']
-#print(df[df['Stream'].isin(options)])
+options = ['Math', 'Commerce']
+print(df[df['Stream'].isin(options)])
 
 #   Selecting all the rows from the given dataframe in which ‘Stream’ is not present in the options list using .loc[] .
 options = ['Math', 'Science']
-#print(df.loc[~df['Stream'].isin(options)])
+print(df.loc[~df['Stream'].isin(options)])
 
 
 '''
