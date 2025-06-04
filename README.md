@@ -11,3 +11,8 @@ You can click the Preview link to take a look at your changes.
 Geek for Geeks Exercises:
 
 https://www.geeksforgeeks.org/python-exercises-practice-questions-and-solutions/ 
+
+
+# Sample Data
+
+Get Sample data at Kagglehub
